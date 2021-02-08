@@ -15,7 +15,8 @@ def reply_markup(ids):
         "chat_id":ids,
         "text":"Button",
         "reply_markup":{
-            "keyboard":[ [{"text":'1'},{"text":'2'},{"text":'3'}],[{"text":'4'},{"text":'5'}],[{"text":6}] ]
+            "keyboard":[ [{"text":'1'},{"text":'2'},{"text":'3'}],[{"text":'4'},{"text":'5'}],[{"text":6}] ],
+            "resize_keyboard":True
         }
     }
     res=requests.post(url,json=p)
