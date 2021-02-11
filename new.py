@@ -15,3 +15,8 @@ def ids():
     ids=getUpdates()["message"]["from"]["id"]
     return ids
 
+def randomPhoto():
+    url=f'https://dog.ceo/api/breeds/image/random'
+    res=requests.get(url)   
+    img_url=res.json()["message"]
+    return img_url
