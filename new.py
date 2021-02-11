@@ -22,10 +22,10 @@ def randomPhoto():        #4
     img_url=res.json()["message"]
     return img_url
 
-def reply_markup(chat_id):    #5
+def reply_markup(ids):    #5
     url=f'https://api.telegram.org/bot{token}/sendMessage'
     p={
-        "chat_id":chat_id,
+        "chat_id":ids,
         "text":"Dogs",
         "reply_markup":{
             "keyboard":[[{"text":"random dog"}]],
@@ -34,6 +34,18 @@ def reply_markup(chat_id):    #5
     }
     res=requests.post(url,json=p)
     return res.json()
+
+def sendPhoto(ids):   #6
+    url=f'https://api.telegram.org/bot{token}/sendPhoto'
+    photo=randomPhoto()
+    p={
+        "chat_id":ids,
+        "photo":photo,
+    }
+    res=requests.get(url,params=p)
+    return res.json()
+
+
 
 
 
