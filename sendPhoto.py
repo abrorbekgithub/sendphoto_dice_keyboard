@@ -22,4 +22,4 @@ def sendPhoto(ids):
     res=requests.get(url,params=p)
     return res.json()
 
-pprint( sendPhoto(ids) )
+sendPhoto(ids) 

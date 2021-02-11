@@ -13,7 +13,7 @@ def sendDice(ids):
     url=f'https://api.telegram.org/bot{token}/sendDice'
     p={
         "chat_id":ids,
-        "emoji":"25"
+        # "emoji":"25" ishlamadi
     }
     res=requests.get(url,params=p)
     return res.json()

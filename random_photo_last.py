@@ -3,17 +3,23 @@ import json
 import os
 from pprint import pprint
 
-token=os.environ["TOKEN"]    #1
+token=os.environ["DOGTOKEN"]    #1
 
 def getUpdates():          #2
+    url=f'https://api.telegram.org/bot{token}/getUpdates'
+    res=requests.get(url=url)
+    update=res.json()["result"]
+    return update
+
+def last():          #2
     url=f'https://api.telegram.org/bot{token}/getUpdates'
     res=requests.get(url=url)
     update=res.json()["result"]
     return update[-1]
 
 def ids_text():       #3
-    ids=getUpdates()["message"]["from"]["id"]
-    text=getUpdates()["message"]["text"]
+    ids=last()["message"]["from"]["id"]
+    text=last()["message"]["text"]
     return ids,text
 
 def randomPhoto():        #4
@@ -45,7 +51,21 @@ def sendPhoto(ids):   #6
     res=requests.get(url,params=p)
     return res.json()
 
+len_update=len(getUpdates())
+last_len_update=len(getUpdates())
 
+while True:
+    last_len_update=len(getUpdates())
+    ids,text=ids_text()
 
+    if last_len_update!=len_update:
+        if text=='/start':
+            reply_markup(ids)
+            len_update=last_len_update
+    
+    if last_len_update!=len_update:
+        if text=='random dog':
+            sendPhoto(ids)
+            len_update=last_len_update
 
 
