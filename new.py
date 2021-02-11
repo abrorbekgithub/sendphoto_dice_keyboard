@@ -9,5 +9,9 @@ def getUpdates():
     url=f'https://api.telegram.org/bot{token}/getUpdates'
     res=requests.get(url=url)
     update=res.json()["result"]
-    return update
+    return update[-1]
+
+def ids():
+    ids=getUpdates()["message"]["from"]["id"]
+    return ids
 
